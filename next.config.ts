@@ -1,7 +1,14 @@
-import type { NextConfig } from "next";
+﻿import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      leaflet: "leaflet/dist/leaflet-src.esm.js",
+    };
+    return config;
+  },
+  turbopack: {}, // ✅ Add this to silence Turbopack warning
 };
 
 export default nextConfig;
